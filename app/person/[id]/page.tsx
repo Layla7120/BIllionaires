@@ -46,13 +46,17 @@ export default async function Person_Id({
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <div className="m-auto my-10 p-10 w-[80%] bg-gray-800">
-        <Image
-          src={details.squareImage}
-          alt={`Picture of ${details.name}`}
-          width={300}
-          height={300}
-          className="rounded-md"
-        />
+        {details.squareImage == "https:undefined" ? (
+          <div className="w-[300px] aspect-square bg-gray-600 rounded-md" />
+        ) : (
+          <Image
+            src={details.squareImage}
+            alt={`Picture of ${details.id}`}
+            width={300}
+            height={300}
+            className="rounded-md"
+          />
+        )}
         <h1 className="text-2xl my-3 font-bold">{details.name}</h1>
         <p className="my-2">
           Networth : {Math.floor(details.netWorth / 1000)} Billion
@@ -61,7 +65,7 @@ export default async function Person_Id({
         <p className="my-2">Industry : {details.industries}</p>
         <p className="my-2">{details.bio} </p>
       </div>
-      <div className="m-auto p-10 w-[80%] bg-gray-800">
+      <div className="m-auto p-10 mb-20 w-[80%] bg-gray-800">
         <h2 className="text-2xl">Financial Assets</h2>
         <div className="grid grid-cols-4 my-3 gap-3">
           {details.financialAssets.map((asset: FinancialAsset) => (
